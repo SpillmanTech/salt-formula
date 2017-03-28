@@ -51,6 +51,16 @@ that differ from whats in defaults.yaml
       'salt_api': 'app-admin/salt',
       'salt_cloud': 'app-admin/salt',
     },
+    'AIX':    {
+      'install_packages': false,
+      'minion_service': '/etc/rc.d/init.d/salt-minion',
+      'minion_install_path': '/path/where/installer/gets/extracted/on/minion',
+      'minion_installer': '/downloadable/installer/path',
+      'minion_installer_hash': '/downloadable/installer/path.hash',
+      'archive_format': tar,
+      'minion_install_cmd': 'bash install.sh',
+      'minion_install_shell': salt['grains']['shell']
+    },
     'Arch':    {
       'salt_master': 'salt-zmq',
       'salt_minion':  'salt-zmq',
@@ -73,6 +83,16 @@ that differ from whats in defaults.yaml
       'master_service': 'salt_master',
       'api_service': 'salt_api',
       'syndic_service': 'salt_syndic',
+    },
+    'Windows': {
+      'install_packages': false,
+      'minion_service': 'salt-minion',
+      'minion_install_path': '/path/where/installer/gets/extracted/on/minion',
+      'minion_installer': '/downloadable/installer/path',
+      'minion_installer_hash': '/downloadable/installer/path.hash',
+      'archive_format': 'zip',
+      'minion_install_cmd': 'install.bat',
+      'minion_install_shell': salt['grains']['shell']
     },
   }, grain="os_family", merge=salt['pillar.get']('salt:lookup'))
 %}

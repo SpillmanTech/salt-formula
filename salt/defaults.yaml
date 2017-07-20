@@ -2,9 +2,13 @@
 # vim: ft=yaml
 salt:
   install_packages: True
+  use_pip: False
   clean_config_d_dir: True
 
   config_path: /etc/salt
+
+  minion_remove_config: False
+  master_remove_config: False
 
   minion_service: salt-minion
   master_service: salt-master
@@ -19,6 +23,7 @@ salt:
   salt_ssh: salt-ssh
 
   python_git: python-git
+  python_dulwich: python-dulwich
 
   master:
     gitfs_provider: gitpython

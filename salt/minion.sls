@@ -39,6 +39,9 @@ salt-minion:
 {% endif %}
       - file: salt-minion
       - file: remove-old-minion-conf-file
+{% if 'id' in salt_settings.minion %}
+      - file: remove-inconsistent-minion_id-file
+{% endif %}
 {% endif %}
 
 {%- if grains['os_family'] == 'AIX' %}
@@ -61,3 +64,11 @@ remove-default-minion-conf-file:
 remove-old-minion-conf-file:
   file.absent:
     - name: {{ salt_settings.config_path }}/minion.d/_defaults.conf
+
+{% if 'id' in salt_settings.minion %}
+#remove minion_id if the contents don't match what goes in f_defaults.conf
+remove-inconsistent-minion_id-file:
+  file.absent:
+    - name: /etc/salt/minion_id
+    - onlyif: '[[ -f /etc/salt/minion_id && "{{ salt_settings.minion.id }}" != "$(cat /etc/salt/minion_id)" ]]'
+{% endif %}

@@ -1,8 +1,8 @@
-name: salt
+name: flex-salt
 os: Debian, Redhat, Suse, Arch, Gentoo, FreeBSD, Windows
 os_family: Debian, Redhat, Suse, Arch, Gentoo, FreeBSD, Windows
-version: 201603
+version: 201807
 release: 1
-minimum_version: 2015.8
-summary: Formula for install Saltstack
-description: Formula for installing Saltstack
+summary: Salt the salt-master and salt-minions with this formula
+description: Use this to configure salt processes on the various nodes in your configuration.
+top_level_dir: salt
